@@ -1,18 +1,26 @@
 import "./App.css";
 import Employee from "./components/Employee";
+import { useState } from 'react';
 
 function App() {
-  console.log("We are about to list the employees");
+  const [role, setRole] = useState('dev');
+  
   const showEmployees = true;
   return (
     <div className="App">
-      { console.log('Inside the return') }
+      {console.log("Inside the return")}
       {showEmployees ? (
         <>
-          <Employee name='Emilian' role='Intern'/>
-          <Employee name='Andreea' />
-          <Employee name='Diana' />
-          
+          <input
+            type="text"
+            onChange={(e) => {
+              console.log(e.target.value);
+              setRole(e.target.value);
+            }}
+          />
+          <Employee name="Emilian" role="Intern" />
+          <Employee name="Andreea" role={role}/>
+          <Employee name="Diana" />
         </>
       ) : (
         <p>You cannot see this page</p>
